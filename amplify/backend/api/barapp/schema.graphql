@@ -1,0 +1,28 @@
+type Mesa @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nroMesa: String
+  Pedidos: [Pedido] @hasMany(indexName: "byMesa", fields: ["id"])
+}
+
+enum StatusPedido {
+  PEDIDO
+  ENTREGADO
+  PAGADO
+  CANCELADO
+}
+
+type Pedido @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Estado: StatusPedido
+  Comidas: [Comida] @manyToMany(relationName: "PedidoComida")
+  mesaID: ID! @index(name: "byMesa")
+}
+
+type Comida @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Descripcion: String
+  Precio: Float
+  Foto: AWSURL
+  Nombre: String
+  pedidos: [Pedido] @manyToMany(relationName: "PedidoComida")
+}
