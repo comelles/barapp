@@ -79,7 +79,7 @@ export const MisPlatos = () => {
 
     return(
         <Fragment>
-             <div className="container">
+             <div className="container p-3">
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 5 }} aria-label="customized table">
                         <TableHead>
@@ -138,6 +138,7 @@ export const MisPlatos = () => {
                                         </IconButton>
                                         }
                                         /*title={item.name}*/
+                                        title="Hamburguesa completa con papas"
                                     />
                                     <CardMedia
                                         component="img"
@@ -146,7 +147,6 @@ export const MisPlatos = () => {
                                     />
                                     <CardContent>
                                         <Typography variant="body2" color="text.secondary">
-                                            Comida: hamburguesa completa con papas <br></br>
                                             Precio: $1800 <br></br>
                                         </Typography>
                                     </CardContent>
