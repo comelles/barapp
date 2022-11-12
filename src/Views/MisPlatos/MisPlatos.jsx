@@ -30,6 +30,11 @@ import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import { CompressOutlined } from '@mui/icons-material';
 import hamburguesa from '../../imagenes/hamburguesa.png';
+import { API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
+
 
 const StyledTableCell = styled2(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -64,6 +69,22 @@ const ExpandMore = styled2((props) => {
   }));
 
 export const MisPlatos = () => {
+
+
+    const [listComidas, setListComidas] = useState([]);
+    useEffect(() =>{
+        async function getAllComidas(){
+            const allComidas = await API.graphql({query: queries.listComidas});
+            setListComidas(allComidas.data.listComidas.items);  
+        }
+        getAllComidas();
+    
+    
+    }, []);
+    //console.log(listComidas[0].Nombre)
+
+    //como obtener el listado de comidas 
+
 
     const [expanded, setExpanded] = React.useState(false);
     const [estadoModal, cambiarEstadoModal] = useState(false);
@@ -119,131 +140,68 @@ export const MisPlatos = () => {
                 </div>
                 <div class="container">
                     <div class="d-flex overflow-scroll mt-3">
-                            {/*{listTorneos && listTorneos.map(item => { */}
-
-                               {/* if(item.userCreator == userCreator){ 
-                                return( */}
+                            {listComidas && listComidas.map(item => { 
+                                
+                                return(
                                 <div class="d-flex col-md-3">
                                     <div>
-                                    <Card sx={{ maxWidth: 345 }}>
-                                    <CardHeader
-                                        avatar={
-                                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                            H
-                                        </Avatar>
-                                        }
-                                        action={
-                                        <IconButton aria-label="send" href='/ranking'>
-                                        <SendIcon />
-                                        </IconButton>
-                                        }
-                                        /*title={item.name}*/
-                                        title="Hamburguesa completa con papas"
-                                    />
-                                    <CardMedia
-                                        component="img"
-                                        height="194"
-                                        image={hamburguesa}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Precio: $1800 <br></br>
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions disableSpacing>
-                                    
-                                    <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
-                                    <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
-                                    </Fab>
-                                
-                                    &nbsp;&nbsp;
-                                    <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
-                                    <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
-                                    </Fab>
-                                        <ExpandMore
-                                        expand={expanded}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more"
-                                        >
-                                        <ExpandMoreIcon />
-                                        </ExpandMore>
-                                    </CardActions>
-                                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                        <Card sx={{ maxWidth: 345 }}>
+                                        <CardHeader
+                                            avatar={
+                                            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                                                
+                                            </Avatar>
+                                            }
+                                            action={
+                                            <IconButton aria-label="send" href='/ranking'>
+                                            <SendIcon />
+                                            </IconButton>
+                                            }
+                                            title={item.Nombre}
+                                            
+                                        />
+                                        <CardMedia
+                                            component="img"
+                                            height="194"
+                                            image={item.Foto}
+                                        />
                                         <CardContent>
-                                        <Typography paragraph>Descripcion:</Typography>
-                                        <Typography paragraph> Medallón de carne de 180 gr con queso, tomate, lechuga y como acompañamiento papas fritas
-                                            {/*{item.description} */}
-                                        </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                Precio: {item.Precio} <br></br>
+                                            </Typography>
                                         </CardContent>
-                                    </Collapse>
-                                    </Card>
-                                    </div> 
-                                    {/*<Modal
-                                        estado={estadoModal}
-                                        cambiarEstado={cambiarEstadoModal}
-                                        titulo="Modificar torneo"
-                                        mostrarHeader={true}
-                                        mostrarOverlay={true}
-                                        posicionModal={'center'}
-                                        padding={'20px'}
-                                        key={item.id}
-                                    >
-                                        <Contenido>
+                                        <CardActions disableSpacing>
                                         
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="col-md">
-                                                <label class="labels">Nombre del torneo</label>
-                                                <input  className="form-control"
-                                                placeholder={item.name} 
-                                                type="text" 
-                                                name="name" 
-                                                onChange={handleInputChange}/>
-                                            </div>  
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="col-md">
-                                                <label class="labels">Nombre del deporte</label>
-                                                <input className="form-control"
-                                                placeholder={item.sport} 
-                                                type="text" 
-                                                name="sport"
-                                                onChange={handleInputChange}/> 
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                        <div class="row">
-                                        <div class="col-md">
-                                            <label class="labels">Fecha de inicio del torneo</label>
-                                            <input className="form-control" 
-                                            type="date" 
-                                            name="startDate" 
-                                            onChange={handleInputChange}/>
-                                        </div>
-                                        <div class="col-md">
-                                                <label class="labels">Fecha de finalización del torneo</label>
-                                                <input className="form-control" 
-                                                type="date" 
-                                                name="endDate" 
-                                                onChange={handleInputChange}/> 
-                                            </div>
-                                        </div>
-                                    </div>    
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="col-md">
-                                            <label class="labels">Descripción del torneo</label>
-                                            <textarea className="form-control"
-                                            placeholder={item.description}
-                                            type="text" 
-                                            name="description" 
-                                            onChange={handleInputChange}/> 
-                                        </div>
-                                    </div>
-                                            <Boton  onClick={() => {cambiarEstadoModal(!estadoModal); confirmacionModify(item.id, userCreator)}}>Guardar cambios</Boton>
-                                        </Contenido>
-                                    </Modal> */}
+                                        <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
+                                        <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
+                                        </Fab>
+                                    
+                                        &nbsp;&nbsp;
+                                        <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
+                                        <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
+                                        </Fab>
+                                            <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpandClick}
+                                            aria-expanded={expanded}
+                                            aria-label="show more"
+                                            >
+                                            <ExpandMoreIcon />
+                                            </ExpandMore>
+                                        </CardActions>
+                                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                            <CardContent>
+                                            <Typography paragraph>Descripcion:</Typography>
+                                            <Typography paragraph> {item.Descripcion}
+                                            </Typography>
+                                            </CardContent>
+                                        </Collapse>
+                                        </Card>
                                     </div> 
-                    </div>
+                                    
+                                </div> 
+                            )})}
+                        </div>
                 </div>
     </Fragment>
            );
