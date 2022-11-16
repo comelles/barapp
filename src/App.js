@@ -10,6 +10,7 @@ import Header from './components/Header/Header';
 import Owner from './Views/Owner/Owner';
 import CrearPlato from './Views/CrearPlato/CrearPlato';
 import MisPlatos from './Views/MisPlatos/MisPlatos';
+import VerPedidos from './Views/VerPedidos/VerPedidos'
 import * as queries from './graphql/queries';
 
 
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/" element={<Owner/>} />
                 <Route path="/crear-plato" element={<CrearPlato/>} />
                 <Route path="/mis-platos" element={<MisPlatos/>} />
+                <Route path="/pedidos" element={<VerPedidos/>} />
                 <Route
                   path="*"
                   element={
