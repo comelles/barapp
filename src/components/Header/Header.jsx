@@ -27,6 +27,7 @@ const Header = () => {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/mis-platos">Mis platos</NavDropdown.Item>
                             </NavDropdown>
+                            <Nav.Link href="/pedidos">Pedidos</Nav.Link>
                             <Nav.Link href="#">FAQs</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
