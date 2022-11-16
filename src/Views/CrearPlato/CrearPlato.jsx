@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment, useRef } from 'react';
-/*import {API, Auth} from 'aws-amplify';
+//import {API, Auth} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';*/
+import * as mutations from '../../graphql/mutations';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Swal from 'sweetalert2';
 
@@ -96,6 +96,12 @@ return(
                   type="text" 
                   name="description" 
                   /*onChange={handleInputChange}*//> 
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="col-md">
+                  <label for="imagenPlato" class="labels">Elija una imagen para el plato</label>
+                  <input type="file" class="form-control-file" id="imagenPlato"/>
                 </div>
               </div>
               <div class="d-flex justify-content-center align-items-center mb-3">
