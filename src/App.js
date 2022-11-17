@@ -6,7 +6,6 @@ import { Amplify, API } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
-import Header from './components/Header/Header';
 import Owner from './Views/Owner/Owner';
 import CrearPlato from './Views/CrearPlato/CrearPlato';
 import MisPlatos from './Views/MisPlatos/MisPlatos';
@@ -29,7 +28,6 @@ function App() {
       <div className="App">
         <BrowserRouter history={history}>
         <div>
-            <Header />
               <Routes>
                 <Route path="/" element={<Owner/>} />
                 <Route path="/crear-plato" element={<CrearPlato/>} />

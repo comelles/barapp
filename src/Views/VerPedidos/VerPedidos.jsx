@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import '../../App.css';
+import Header from '../../components/Header/Header';
 import Swal from 'sweetalert2'
 import styled from 'styled-components';
 import Modal from './Modal'
@@ -81,6 +82,7 @@ export const VerPedidos = () => {
 
     return(
         <Fragment>
+          <Header />
              <div className="container p-2">
                 <h1 class="texto">Pedidos abiertos</h1>
                     <TableContainer component={Paper}>

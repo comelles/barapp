@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment, useRef } from 'react';
+import Header from '../../components/Header/Header';
 //import {API, Auth} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
@@ -64,52 +65,53 @@ const CrearPlato = () => {
 
 return(
   <Fragment>
-    <div class="container rounded bg-white mt-5 mb-5">
-      <h1>Crear nuevo plato</h1>
-        <form /*ref={form}*/ className="column" /*onSubmit={handleFormSubmit}*/> 
-          <div class="p-2 py-6">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="col-md">
-                <label class="labels">Nombre del plato</label>
-                <input  className="form-control"
-                placeholder="Ingrese el nombre del plato"  
-                type="text" 
-                name="name" 
-                /*onChange={handleInputChange}*//>
+    <Header />
+      <div class="container rounded bg-white mt-5 mb-5">
+        <h1>Crear nuevo plato</h1>
+          <form /*ref={form}*/ className="column" /*onSubmit={handleFormSubmit}*/> 
+            <div class="p-2 py-6">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="col-md">
+                  <label class="labels">Nombre del plato</label>
+                  <input  className="form-control"
+                  placeholder="Ingrese el nombre del plato"  
+                  type="text" 
+                  name="name" 
+                  /*onChange={handleInputChange}*//>
+                </div>
               </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="col-md">
+                    <label class="labels">Precio del plato</label>
+                    <input className="form-control"
+                    placeholder="Ingrese el precio del plato" 
+                    type="text" 
+                    name="precio" 
+                    /*onChange={handleInputChange}*//> 
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="col-md">
+                    <label class="labels">Descripción del plato</label>
+                    <textarea className="form-control"
+                    placeholder="Ingrese la descripcion del plato"
+                    type="text" 
+                    name="description" 
+                    /*onChange={handleInputChange}*//> 
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="col-md">
+                    <label for="imagenPlato" class="labels">Elija una imagen para el plato</label>
+                    <input type="file" class="form-control-file" id="imagenPlato"/>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                  <button className="btn btn-dark" type="submit">Crear Plato</button>
+                </div>
             </div>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="col-md">
-                  <label class="labels">Precio del plato</label>
-                  <input className="form-control"
-                  placeholder="Ingrese el precio del plato" 
-                  type="text" 
-                  name="precio" 
-                  /*onChange={handleInputChange}*//> 
-                </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="col-md">
-                  <label class="labels">Descripción del plato</label>
-                  <textarea className="form-control"
-                  placeholder="Ingrese la descripcion del plato"
-                  type="text" 
-                  name="description" 
-                  /*onChange={handleInputChange}*//> 
-                </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="col-md">
-                  <label for="imagenPlato" class="labels">Elija una imagen para el plato</label>
-                  <input type="file" class="form-control-file" id="imagenPlato"/>
-                </div>
-              </div>
-              <div class="d-flex justify-content-center align-items-center mb-3">
-                <button className="btn btn-dark" type="submit">Crear Plato</button>
-              </div>
-          </div>
-        </form> 
-    </div>
+          </form> 
+      </div>
   </Fragment>
 );} 
 

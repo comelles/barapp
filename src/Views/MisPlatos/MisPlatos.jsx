@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import '../../App.css';
+import Header from '../../components/Header/Header';
 import Swal from 'sweetalert2'
 import DeleteIcon from '@mui/icons-material/Delete';
 import styled from 'styled-components';
@@ -100,109 +101,110 @@ export const MisPlatos = () => {
 
     return(
         <Fragment>
-             <div className="container p-3">
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 5 }} aria-label="customized table">
-                        <TableHead>
-                            <TableRow>
-                                <StyledTableCell>Plato</StyledTableCell>
-                                <StyledTableCell>Precio</StyledTableCell>
-                                {/*<StyledTableCell>Fecha de fin</StyledTableCell>*/}
-                                <StyledTableCell>Descripcion</StyledTableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {/* {array.map((item) => ( */}
-                                <StyledTableRow>
-                                    <StyledTableCell component="th" scope="row">a</StyledTableCell>
-                                    <StyledTableCell>b</StyledTableCell>
-                                    <StyledTableCell>c</StyledTableCell>
-                                    {/*<StyledTableCell>
-                                        <select
-                                            className="custom-select my-1 mr-2"
-                                            id="inlineFormCustomSelect"
-                                            name="team"
-                                            value="d"
-                                            onChange={handleChange}
-                                        >
-                                        <option default>abc</option>
-                                        </select>
-                                    </StyledTableCell>
-                                    <StyledTableCell>
-                                        <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
-                                    </StyledTableCell>*/}
-                                </StyledTableRow>
-                                    {/*))*/}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                    
-                </div>
-                <div class="container">
-                    <div class="d-flex overflow-scroll mt-3">
-                            {listComidas && listComidas.map(item => { 
-                                
-                                return(
-                                <div class="d-flex col-md-3">
-                                    <div>
-                                        <Card sx={{ maxWidth: 345 }}>
-                                        <CardHeader
-                                            avatar={
-                                            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                                
-                                            </Avatar>
-                                            }
-                                            action={
-                                            <IconButton aria-label="send" href='/ranking'>
-                                            <SendIcon />
-                                            </IconButton>
-                                            }
-                                            title={item.Nombre}
-                                            
-                                        />
-                                        <CardMedia
-                                            component="img"
-                                            height="194"
-                                            image={item.Foto}
-                                        />
-                                        <CardContent>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Precio: {item.Precio} <br></br>
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions disableSpacing>
-                                        
-                                        <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
-                                        <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
-                                        </Fab>
-                                    
-                                        &nbsp;&nbsp;
-                                        <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
-                                        <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
-                                        </Fab>
-                                            <ExpandMore
-                                            expand={expanded}
-                                            onClick={handleExpandClick}
-                                            aria-expanded={expanded}
-                                            aria-label="show more"
+            <Header />
+                <div className="container p-3">
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 5 }} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>Plato</StyledTableCell>
+                                    <StyledTableCell>Precio</StyledTableCell>
+                                    {/*<StyledTableCell>Fecha de fin</StyledTableCell>*/}
+                                    <StyledTableCell>Descripcion</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {/* {array.map((item) => ( */}
+                                    <StyledTableRow>
+                                        <StyledTableCell component="th" scope="row">a</StyledTableCell>
+                                        <StyledTableCell>b</StyledTableCell>
+                                        <StyledTableCell>c</StyledTableCell>
+                                        {/*<StyledTableCell>
+                                            <select
+                                                className="custom-select my-1 mr-2"
+                                                id="inlineFormCustomSelect"
+                                                name="team"
+                                                value="d"
+                                                onChange={handleChange}
                                             >
-                                            <ExpandMoreIcon />
-                                            </ExpandMore>
-                                        </CardActions>
-                                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                            <CardContent>
-                                            <Typography paragraph>Descripcion:</Typography>
-                                            <Typography paragraph> {item.Descripcion}
-                                            </Typography>
-                                            </CardContent>
-                                        </Collapse>
-                                        </Card>
-                                    </div> 
+                                            <option default>abc</option>
+                                            </select>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
+                                        </StyledTableCell>*/}
+                                    </StyledTableRow>
+                                        {/*))*/}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                        
+                    </div>
+                    <div class="container">
+                        <div class="d-flex overflow-scroll mt-3">
+                                {listComidas && listComidas.map(item => { 
                                     
-                                </div> 
-                            )})}
-                        </div>
-                </div>
+                                    return(
+                                    <div class="d-flex col-md-3">
+                                        <div>
+                                            <Card sx={{ maxWidth: 345 }}>
+                                            <CardHeader
+                                                avatar={
+                                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                                                    
+                                                </Avatar>
+                                                }
+                                                action={
+                                                <IconButton aria-label="send" href='/ranking'>
+                                                <SendIcon />
+                                                </IconButton>
+                                                }
+                                                title={item.Nombre}
+                                                
+                                            />
+                                            <CardMedia
+                                                component="img"
+                                                height="194"
+                                                image={item.Foto}
+                                            />
+                                            <CardContent>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    Precio: {item.Precio} <br></br>
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions disableSpacing>
+                                            
+                                            <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
+                                            <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
+                                            </Fab>
+                                        
+                                            &nbsp;&nbsp;
+                                            <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
+                                            <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
+                                            </Fab>
+                                                <ExpandMore
+                                                expand={expanded}
+                                                onClick={handleExpandClick}
+                                                aria-expanded={expanded}
+                                                aria-label="show more"
+                                                >
+                                                <ExpandMoreIcon />
+                                                </ExpandMore>
+                                            </CardActions>
+                                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                                <CardContent>
+                                                <Typography paragraph>Descripcion:</Typography>
+                                                <Typography paragraph> {item.Descripcion}
+                                                </Typography>
+                                                </CardContent>
+                                            </Collapse>
+                                            </Card>
+                                        </div> 
+                                        
+                                    </div> 
+                                )})}
+                            </div>
+                    </div>
     </Fragment>
            );
     };
