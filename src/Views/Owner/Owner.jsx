@@ -18,7 +18,7 @@ const Owner = () => {
                             <a className="btn btn-danger" type="button" class="btn btn-danger btn-lg btn-block" href="/crear-plato">Agregar nuevo plato</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-center mb-3">
-                            <a className="btn btn-danger" type="button" class="btn btn-danger btn-lg btn-block" href="/pedidos">Ver pedidos en curso</a>
+                            <a className="btn btn-danger" type="button" class="btn btn-danger btn-lg btn-block" href="/pedidos">Ver pedidos</a>
                         </div>
                     </div>
                 </div>
