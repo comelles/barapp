@@ -107,8 +107,7 @@ export const VerPedidos = () => {
         setStyle2("hide");
         setStyle3("show");
       };
-      
-
+    
     return(
         <Fragment>
           <Header />
@@ -116,13 +115,13 @@ export const VerPedidos = () => {
               <h1 class="texto2">Pedidos</h1>
               <div class="row p-2 py-6">
                 <div className="col-md">
-                  <a className="btn btn-success" type="button" class="btn btn-success btn-lg btn-block" onClick={changeStyleAbiertos}>Abiertos</a>
+                  <button className="btn btn-success btn-lg btn-block" type="button" onClick={changeStyleAbiertos}>Abiertos</button>
                 </div>
                 <div className="col-md">
-                  <a className="btn btn-danger" type="button" class="btn btn-danger btn-lg btn-block" onClick={changeStyleCerrados}>Cerrados</a>
+                  <button className="btn btn-danger btn-lg btn-block" type="button" onClick={changeStyleCerrados}>Cerrados</button>
                 </div>
                 <div className="col-md">
-                  <a className="btn btn-warning" type="button" class="btn btn-warning btn-lg btn-block" onClick={changeStyleCancelados}>Cancelados</a>
+                  <button className="btn btn-warning btn-lg btn-block" type="button" onClick={changeStyleCancelados}>Cancelados</button>
                 </div>
               </div>
             </div>
