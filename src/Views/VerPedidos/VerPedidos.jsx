@@ -18,6 +18,7 @@ import { API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const StyledTableCell = styled2(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -80,10 +81,53 @@ export const VerPedidos = () => {
     
       } */
 
+      const [style1, setStyle1] = useState("show");
+  
+      const changeStyleAbiertos = () => {
+        console.log("you just clicked");
+        setStyle1("show");
+        setStyle2("hide");
+        setStyle3("hide");
+      };
+
+      const [style2, setStyle2] = useState("show");
+  
+      const changeStyleCerrados = () => {
+        console.log("you just clicked");
+        setStyle1("hide");
+        setStyle2("show");
+        setStyle3("hide");
+      };
+
+      const [style3, setStyle3] = useState("show");
+  
+      const changeStyleCancelados = () => {
+        console.log("you just clicked");
+        setStyle1("hide");
+        setStyle2("hide");
+        setStyle3("show");
+      };
+      
+
     return(
         <Fragment>
           <Header />
-             <div className="container p-2">
+            <div class="container rounded bg-white mt-5 mb-5">
+              <h1 class="texto2">Pedidos</h1>
+              <div class="row p-2 py-6">
+                <div className="col-md">
+                  <a className="btn btn-success" type="button" class="btn btn-success btn-lg btn-block" onClick={changeStyleAbiertos}>Abiertos</a>
+                </div>
+                <div className="col-md">
+                  <a className="btn btn-danger" type="button" class="btn btn-danger btn-lg btn-block" onClick={changeStyleCerrados}>Cerrados</a>
+                </div>
+                <div className="col-md">
+                  <a className="btn btn-warning" type="button" class="btn btn-warning btn-lg btn-block" onClick={changeStyleCancelados}>Cancelados</a>
+                </div>
+              </div>
+            </div>
+            <div className="container">
+             <div className={style1}>
                 <h1 class="texto">Pedidos abiertos</h1>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 5 }} aria-label="customized table">
@@ -117,6 +161,81 @@ export const VerPedidos = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
+              </div>
+            </div>
+            <div className="container">
+              <div className={style2}>
+                  <h1 class="texto">Pedidos cerrados</h1>
+                      <TableContainer component={Paper}>
+                          <Table sx={{ minWidth: 5 }} aria-label="customized table">
+                              <TableHead>
+                                  <TableRow>
+                                      <StyledTableCell>Plato</StyledTableCell>
+                                      <StyledTableCell>Precio</StyledTableCell>
+                                  </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                  {/* {array.map((item) => ( */}
+                                      <StyledTableRow>
+                                          <StyledTableCell component="th" scope="row">a</StyledTableCell>
+                                          <StyledTableCell>b</StyledTableCell>
+                                          {/*<StyledTableCell>
+                                              <select
+                                                  className="custom-select my-1 mr-2"
+                                                  id="inlineFormCustomSelect"
+                                                  name="team"
+                                                  value="d"
+                                                  onChange={handleChange}
+                                              >
+                                              <option default>abc</option>
+                                              </select>
+                                          </StyledTableCell>
+                                          <StyledTableCell>
+                                              <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
+                                          </StyledTableCell>*/}
+                                      </StyledTableRow>
+                                          {/*))*/}
+                              </TableBody>
+                          </Table>
+                      </TableContainer>
+              </div>
+            </div>
+            <div className="container">
+              <div className={style3}>
+                <h1 class="texto">Pedidos cancelados</h1>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 5 }} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>Plato</StyledTableCell>
+                                    <StyledTableCell>Precio</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {/* {array.map((item) => ( */}
+                                    <StyledTableRow>
+                                        <StyledTableCell component="th" scope="row">a</StyledTableCell>
+                                        <StyledTableCell>b</StyledTableCell>
+                                        {/*<StyledTableCell>
+                                            <select
+                                                className="custom-select my-1 mr-2"
+                                                id="inlineFormCustomSelect"
+                                                name="team"
+                                                value="d"
+                                                onChange={handleChange}
+                                            >
+                                            <option default>abc</option>
+                                            </select>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
+                                        </StyledTableCell>*/}
+                                    </StyledTableRow>
+                                        {/*))*/}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+              </div>
             </div>
     </Fragment>
            );
