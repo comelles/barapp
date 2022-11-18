@@ -5,8 +5,6 @@ import Swal from 'sweetalert2'
 import DeleteIcon from '@mui/icons-material/Delete';
 import styled from 'styled-components';
 import Modal from './Modal'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 import { styled as styled2 } from '@mui/material/styles';
 import Card from '@mui/material/Card';
