@@ -1,4 +1,3 @@
-import bootstrap from 'bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -28,7 +27,6 @@ const Header = () => {
                                 <NavDropdown.Item href="/mis-platos">Mis platos</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link href="/pedidos">Pedidos</Nav.Link>
-                            <Nav.Link href="#">FAQs</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
