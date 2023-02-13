@@ -10,12 +10,11 @@ import Owner from './Views/Owner/Owner';
 import CrearPlato from './Views/CrearPlato/CrearPlato';
 import MisPlatos from './Views/MisPlatos/MisPlatos';
 import VerPedidos from './Views/VerPedidos/VerPedidos'
+import Menu from './Views/Menu/Menu'
 import * as queries from './graphql/queries';
-
 
 Amplify.configure(awsExports);
 Amplify.configure(awsconfig);
-
 
 function App() {
 
@@ -33,6 +32,7 @@ function App() {
                 <Route path="/crear-plato" element={<CrearPlato/>} />
                 <Route path="/mis-platos" element={<MisPlatos/>} />
                 <Route path="/pedidos" element={<VerPedidos/>} />
+                <Route path="/menu" element={<Menu/>} />
                 <Route
                   path="*"
                   element={
