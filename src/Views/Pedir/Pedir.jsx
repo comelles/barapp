@@ -4,7 +4,6 @@ import Header from '../../components/Header/Header';
 import Swal from 'sweetalert2'
 import DeleteIcon from '@mui/icons-material/Delete';
 import styled from 'styled-components';
-import Modal from './Modal'
 import * as React from 'react';
 import { styled as styled2 } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -53,7 +52,6 @@ export const MisPlatos = () => {
     //como obtener el listado de comidas 
 
     const [expanded, setExpanded] = React.useState(false);
-    const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -63,6 +61,8 @@ export const MisPlatos = () => {
         setUpdateTorneo({...updateTorneo, [e.target.name]: e.target.value})
     
       } */
+
+
 
     return(
         <Fragment>
@@ -75,7 +75,7 @@ export const MisPlatos = () => {
                                     <div>
                                         <Card sx={{ maxWidth: 345 }}>
                                             <CardHeader
-                                                
+                                        
                                                 title={item.Nombre}
                                                 
                                             />
@@ -89,14 +89,12 @@ export const MisPlatos = () => {
                                                     Precio: {item.Precio} <br></br>
                                                 </Typography>
                                             </CardContent>
+                              
+
                                             <CardActions disableSpacing>
-                                            <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
-                                                <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
-                                            </Fab>
-                                            &nbsp;&nbsp;
-                                            <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
-                                                <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
-                                            </Fab>
+                                            
+                                                
+                                            
                                                 <ExpandMore
                                                     expand={expanded}
                                                     onClick={handleExpandClick}

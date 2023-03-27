@@ -66,6 +66,18 @@ export const VerPedidos = () => {
     }, []);
     //console.log(listComidas[0].Nombre)
 
+    const [listPedidos, setListPedidos] = useState([]);
+    useEffect(() =>{
+        async function getAllPedidos(){
+            const allPedidos = await API.graphql({query: queries.listPedidos});
+            setListPedidos(allPedidos.data.listPedidos.items);  
+        }
+        getAllPedidos();
+    
+    
+    }, []);
+    console.log(listPedidos)
+
     //como obtener el listado de comidas 
 
 
@@ -107,8 +119,9 @@ export const VerPedidos = () => {
         setStyle2("hide");
         setStyle3("show");
       };
-    
+    console.log(queries.listPedidos)
     return(
+      
         <Fragment>
           <Header />
             <div class="container rounded bg-white mt-5 mb-5">
