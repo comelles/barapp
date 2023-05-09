@@ -1,8 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import '../../App.css';
 import Header from '../../components/Header/Header';
-import Swal from 'sweetalert2'
-import styled from 'styled-components';
 import Modal from './Modal'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -80,7 +78,6 @@ export const VerPedidos = () => {
 
     //como obtener el listado de comidas 
 
-
     const [expanded, setExpanded] = React.useState(false);
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
@@ -88,40 +85,34 @@ export const VerPedidos = () => {
         setExpanded(!expanded);
       };
 
-      /* const handleInputChange = (e) =>{
-        setUpdateTorneo({...updateTorneo, [e.target.name]: e.target.value})
-    
-      } */
-
       const [style1, setStyle1] = useState("show");
   
       const changeStyleAbiertos = () => {
-        console.log("you just clicked");
+        console.log("Mostrar pedidos abiertos");
         setStyle1("show");
         setStyle2("hide");
         setStyle3("hide");
       };
 
-      const [style2, setStyle2] = useState("show");
+      const [style2, setStyle2] = useState("hide");
   
       const changeStyleCerrados = () => {
-        console.log("you just clicked");
+        console.log("Mostrar pedidos cerrados");
         setStyle1("hide");
         setStyle2("show");
         setStyle3("hide");
       };
 
-      const [style3, setStyle3] = useState("show");
+      const [style3, setStyle3] = useState("hide");
   
       const changeStyleCancelados = () => {
-        console.log("you just clicked");
+        console.log("Mostrar pedidos cancelados");
         setStyle1("hide");
         setStyle2("hide");
         setStyle3("show");
       };
     console.log(queries.listPedidos)
     return(
-      
         <Fragment>
           <Header />
             <div class="container rounded bg-white mt-5 mb-5">
@@ -145,31 +136,17 @@ export const VerPedidos = () => {
                         <Table sx={{ minWidth: 5 }} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Plato</StyledTableCell>
-                                    <StyledTableCell>Precio</StyledTableCell>
+                                    <StyledTableCell>Mesa</StyledTableCell>
+                                    <StyledTableCell>Pedido</StyledTableCell>
+                                    <StyledTableCell>Precio total</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {/* {array.map((item) => ( */}
                                     <StyledTableRow>
-                                        <StyledTableCell component="th" scope="row">a</StyledTableCell>
-                                        <StyledTableCell>b</StyledTableCell>
-                                        {/*<StyledTableCell>
-                                            <select
-                                                className="custom-select my-1 mr-2"
-                                                id="inlineFormCustomSelect"
-                                                name="team"
-                                                value="d"
-                                                onChange={handleChange}
-                                            >
-                                            <option default>abc</option>
-                                            </select>
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
-                                        </StyledTableCell>*/}
+                                        <StyledTableCell component="th" scope="row">1</StyledTableCell>
+                                        <StyledTableCell>Pedido 1</StyledTableCell>
+                                        <StyledTableCell>$4500</StyledTableCell>
                                     </StyledTableRow>
-                                        {/*))*/}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -182,31 +159,17 @@ export const VerPedidos = () => {
                           <Table sx={{ minWidth: 5 }} aria-label="customized table">
                               <TableHead>
                                   <TableRow>
-                                      <StyledTableCell>Plato</StyledTableCell>
-                                      <StyledTableCell>Precio</StyledTableCell>
+                                    <StyledTableCell>Mesa</StyledTableCell>
+                                    <StyledTableCell>Pedido</StyledTableCell>
+                                    <StyledTableCell>Precio total</StyledTableCell>
                                   </TableRow>
                               </TableHead>
                               <TableBody>
-                                  {/* {array.map((item) => ( */}
                                       <StyledTableRow>
-                                          <StyledTableCell component="th" scope="row">a</StyledTableCell>
-                                          <StyledTableCell>b</StyledTableCell>
-                                          {/*<StyledTableCell>
-                                              <select
-                                                  className="custom-select my-1 mr-2"
-                                                  id="inlineFormCustomSelect"
-                                                  name="team"
-                                                  value="d"
-                                                  onChange={handleChange}
-                                              >
-                                              <option default>abc</option>
-                                              </select>
-                                          </StyledTableCell>
-                                          <StyledTableCell>
-                                              <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
-                                          </StyledTableCell>*/}
+                                          <StyledTableCell component="th" scope="row">2</StyledTableCell>
+                                        <StyledTableCell>Pedido 2</StyledTableCell>
+                                        <StyledTableCell>$2000</StyledTableCell>
                                       </StyledTableRow>
-                                          {/*))*/}
                               </TableBody>
                           </Table>
                       </TableContainer>
@@ -219,31 +182,17 @@ export const VerPedidos = () => {
                         <Table sx={{ minWidth: 5 }} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Plato</StyledTableCell>
-                                    <StyledTableCell>Precio</StyledTableCell>
+                                    <StyledTableCell>Mesa</StyledTableCell>
+                                    <StyledTableCell>Pedido</StyledTableCell>
+                                    <StyledTableCell>Precio total</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {/* {array.map((item) => ( */}
                                     <StyledTableRow>
-                                        <StyledTableCell component="th" scope="row">a</StyledTableCell>
-                                        <StyledTableCell>b</StyledTableCell>
-                                        {/*<StyledTableCell>
-                                            <select
-                                                className="custom-select my-1 mr-2"
-                                                id="inlineFormCustomSelect"
-                                                name="team"
-                                                value="d"
-                                                onChange={handleChange}
-                                            >
-                                            <option default>abc</option>
-                                            </select>
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            <button  className="btn btn-success mt-2 mb-2 mx-2 h-25">Enviar solicitud</button>
-                                        </StyledTableCell>*/}
+                                        <StyledTableCell component="th" scope="row">3</StyledTableCell>
+                                        <StyledTableCell>Pedido 3</StyledTableCell>
+                                        <StyledTableCell>$9900</StyledTableCell>
                                     </StyledTableRow>
-                                        {/*))*/}
                             </TableBody>
                         </Table>
                     </TableContainer>
