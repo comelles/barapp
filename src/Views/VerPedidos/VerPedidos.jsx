@@ -1,7 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import '../../App.css';
 import Header from '../../components/Header/Header';
-import Modal from './Modal'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -11,12 +10,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import * as React from 'react';
 import { styled as styled2 } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import { API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 const StyledTableCell = styled2(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -36,18 +35,6 @@ const StyledTableCell = styled2(TableCell)(({ theme }) => ({
     '&:last-child td, &:last-child th': {
       border: 0,
     },
-  }));
-
-
-const ExpandMore = styled2((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
   }));
 
 export const VerPedidos = () => {
@@ -76,15 +63,6 @@ export const VerPedidos = () => {
     }, []);
     console.log(listPedidos)
 
-    //como obtener el listado de comidas 
-
-    const [expanded, setExpanded] = React.useState(false);
-    const [estadoModal, cambiarEstadoModal] = useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-      };
-
       const [style1, setStyle1] = useState("show");
   
       const changeStyleAbiertos = () => {
@@ -112,6 +90,7 @@ export const VerPedidos = () => {
         setStyle3("show");
       };
     console.log(queries.listPedidos)
+
     return(
         <Fragment>
           <Header />
@@ -139,6 +118,7 @@ export const VerPedidos = () => {
                                     <StyledTableCell>Mesa</StyledTableCell>
                                     <StyledTableCell>Pedido</StyledTableCell>
                                     <StyledTableCell>Precio total</StyledTableCell>
+                                    <StyledTableCell></StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -146,6 +126,7 @@ export const VerPedidos = () => {
                                         <StyledTableCell component="th" scope="row">1</StyledTableCell>
                                         <StyledTableCell>Pedido 1</StyledTableCell>
                                         <StyledTableCell>$4500</StyledTableCell>
+                                        <StyledTableCell><Button variant="success">Cerrar Pedido</Button></StyledTableCell>
                                     </StyledTableRow>
                             </TableBody>
                         </Table>

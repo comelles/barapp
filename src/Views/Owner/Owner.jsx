@@ -1,6 +1,6 @@
 import '../../App.css';
 import Header from '../../components/Header/Header';
-import { useState, useEffect, Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Owner = () => {

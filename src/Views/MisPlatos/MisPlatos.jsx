@@ -13,11 +13,9 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red, green } from '@mui/material/colors';
-import SendIcon from '@mui/icons-material/Send';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
@@ -25,6 +23,7 @@ import { API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
+import ComidaUpdateForm from '../../ui-components/ComidaUpdateForm';
 
 const ExpandMore = styled2((props) => {
     const { expand, ...other } = props;
@@ -39,6 +38,8 @@ const ExpandMore = styled2((props) => {
 
 export const MisPlatos = () => {
 
+    const [estadoModal, cambiarEstadoModal] = useState(false);
+
     const [listComidas, setListComidas] = useState([]);
     useEffect(() =>{
         async function getAllComidas(){
@@ -48,36 +49,50 @@ export const MisPlatos = () => {
         getAllComidas();
     
     }, []);
-    //console.log(listComidas[0].Nombre)
-
-    //como obtener el listado de comidas 
-
+    
     const [expanded, setExpanded] = React.useState(false);
-    const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
 
-      /* const handleInputChange = (e) =>{
-        setUpdateTorneo({...updateTorneo, [e.target.name]: e.target.value})
-    
-      } */
+      const confirmacionDelete = async (id) => {
+        Swal.fire({
+            title:"¿Está seguro que desea eliminar esta comida?",
+            text:"Confirme la acción",
+            icon:"warning",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            denyButtonText: 'No',
+        }).then(respuesta=>{
+              if(respuesta.isConfirmed){
+                Swal.fire({
+                  title:"Comida eliminada con éxito",
+                  icon:"success",
+                  button:"Aceptar",
+                })
+                  const DeleteComidaInput={
+                      id: id
+                  }
+                  API.graphql({query: mutations.deleteComida, variables: {input: DeleteComidaInput}});
+              }
+        })
+    }
 
     return(
         <Fragment>
             <Header />
-                <div class="container">
-                    <div class="d-flex overflow-scroll mt-3">
+                <div class="container bg-white rounded py-2">
+                    <h1 class="container bg-dark rounded py-2">Platos cargados</h1>
+                    <div class="container bg-dark rounded my-2 py-2">
                         {listComidas && listComidas.map(item => {        
                             return(
-                                <div class="d-flex col-md-3">
+                                <div class="d-inline-flex justify-content-center col-md-3 my-2 py-2">
                                     <div>
                                         <Card sx={{ maxWidth: 345 }}>
                                             <CardHeader
-                                                
                                                 title={item.Nombre}
-                                                
                                             />
                                             <CardMedia
                                                 component="img"
@@ -91,11 +106,11 @@ export const MisPlatos = () => {
                                             </CardContent>
                                             <CardActions disableSpacing>
                                             <Fab size="small" sx={{ bgcolor: red[500] }} color="primary" aria-label="delete" >
-                                                <DeleteIcon /*onClick={() => confirmacionDelete(item.id)}*/ />
+                                                <DeleteIcon onClick={() => confirmacionDelete(item.id)} />
                                             </Fab>
                                             &nbsp;&nbsp;
                                             <Fab size="small" sx={{ bgcolor: green[500] }} color="primary" aria-label="edit">
-                                                <EditIcon /*onClick={() => cambiarEstadoModal(!estadoModal)}*/ />
+                                                <EditIcon onClick={() => cambiarEstadoModal(!estadoModal)}/>
                                             </Fab>
                                                 <ExpandMore
                                                     expand={expanded}
@@ -109,11 +124,27 @@ export const MisPlatos = () => {
                                             <Collapse in={expanded} timeout="auto" unmountOnExit>
                                                 <CardContent>
                                                     <Typography paragraph>Descripcion:</Typography>
-                                                    <Typography paragraph> {item.Descripcion}</Typography>
+                                                    <Typography paragraph>{item.Descripcion}</Typography>
                                                 </CardContent>
                                             </Collapse>
                                         </Card>
-                                    </div> 
+                                    </div>
+                                    <Modal
+                                    estado={estadoModal}
+                                    cambiarEstado={cambiarEstadoModal}
+                                    mostrarHeader={true}
+                                    mostrarOverlay={true}
+                                    posicionModal={'center'}
+                                    padding={'20px, 20px, 20px'}
+                                    key={item.id}
+                                >
+                                    <Contenido>
+                                    <div class="container rounded bg-white mt-5 mb-5">
+                                        <h1>Modificar plato</h1>
+                                        {<ComidaUpdateForm/>}
+                                    </div>
+                                    </Contenido>
+                                </Modal>
                                 </div> 
                             )})}
                         </div>
@@ -123,22 +154,6 @@ export const MisPlatos = () => {
 };
 
 export default MisPlatos;
-
-const Boton = styled.button`
-	display: block;
-	padding: 10px 30px;
-	border-radius: 100px;
-	color: #fff;
-	border: none;
-	background: #1766DC;
-	cursor: pointer;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 500;
-	transition: .3s ease all;
-	&:hover {
-		background: #0066FF;
-	}
-`;
 
 const Contenido = styled.div`
 	display: flex;
