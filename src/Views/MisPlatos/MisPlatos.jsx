@@ -22,7 +22,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import { API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
 import ComidaUpdateForm from '../../ui-components/ComidaUpdateForm';
 
 const ExpandMore = styled2((props) => {
@@ -86,7 +85,7 @@ export const MisPlatos = () => {
                 <div class="container bg-white rounded py-2">
                     <h1 class="container bg-dark rounded py-2">Platos cargados</h1>
                     <div class="container bg-dark rounded my-2 py-2">
-                        {listComidas && listComidas.map(item => {        
+                        {listComidas && listComidas.map(item => {
                             return(
                                 <div class="d-inline-flex justify-content-center col-md-3 my-2 py-2">
                                     <div>

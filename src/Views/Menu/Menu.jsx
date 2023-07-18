@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
 import '../../App.css';
 import Header_cliente from '../../components/Header/Header_cliente';
 import Card from '@mui/material/Card';
@@ -19,17 +17,17 @@ import Button from 'react-bootstrap/Button';
 
 export const Menu = () => {
 
-  const [pedido, createPedido] = useState([]);
+    const [pedido, createPedido] = useState([]);
 
-const [listPedidoComidas, setListPedidoComidas] = useState([]);
-  useEffect(() =>{
-    async function getAllPedidoComidas(){
-        const allPedidoComidas = await API.graphql({query: queries.listPedidoComidas});
-        setListPedidoComidas(allPedidoComidas.data.listPedidoComidas.items);  
-    }
-    getAllPedidoComidas();
+  const [listPedidoComidas, setListPedidoComidas] = useState([]);
+    useEffect(() =>{
+      async function getAllPedidoComidas(){
+          const allPedidoComidas = await API.graphql({query: queries.listPedidoComidas});
+          setListPedidoComidas(allPedidoComidas.data.listPedidoComidas.items);  
+      }
+      getAllPedidoComidas();
 
-}, []);
+  }, []);
 
   const [estadoPedido, createEstadoPedido] = useState("PEDIDO");
 

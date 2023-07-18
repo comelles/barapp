@@ -6,14 +6,22 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
+import awsmobile from './aws-exports';
 import Owner from './Views/Owner/Owner';
 import CrearPlato from './Views/CrearPlato/CrearPlato';
 import MisPlatos from './Views/MisPlatos/MisPlatos';
 import VerPedidos from './Views/VerPedidos/VerPedidos'
 import Menu from './Views/Menu/Menu'
 
+Amplify.configure({
+   ...awsExports,
+   Analytics: { 
+       disabled: true
+   }
+});
 Amplify.configure(awsExports);
 Amplify.configure(awsconfig);
+Amplify.configure(awsmobile);
 
 function App() {
     
